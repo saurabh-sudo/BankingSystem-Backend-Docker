@@ -34,6 +34,17 @@ FROM adoptopenjdk/openjdk11
 COPY --from=build /app/BackOfficeSystem/target/BackOfficeSystem-0.0.1-SNAPSHOT.jar /app/backofficesystem-app.jar
 COPY --from=build /app/OnlineBanking/target/OnlineBanking-0.0.1-SNAPSHOT.jar /app/onlinebanking-app.jar
 COPY --from=build /app/TransactionScheduling/target/TransactionScheduling-0.0.1-SNAPSHOT.jar /app/transactionscheduling-app.jar
+
+# Set the entrypoint script
+#WORKDIR /app
+COPY --from=build /app/entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+#ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
+
+# Expose the necessary ports (example for Spring Boot apps)
+EXPOSE 8081 8082 8083
+
 #ENTRYPOINT ["java","-jar","/app/backofficesystem-app.jar"]
 
 
@@ -72,15 +83,18 @@ COPY --from=build /app/TransactionScheduling/target/TransactionScheduling-0.0.1-
 #COPY --from=transactionscheduling_build /app/target/transactionscheduling-*.jar /app/transactionscheduling.jar
 
 
-# Set the entrypoint script
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-# Expose the necessary ports (example for Spring Boot apps)
-EXPOSE 8081 8082 8083
+## Set the entrypoint script
+##WORKDIR /app
+##COPY entrypoint.sh /entrypoint.sh
+##RUN chmod +x /entrypoint.sh
+##ENTRYPOINT ["entrypoint.sh"]
+#ENTRYPOINT ["/entrypoint.sh"]
+#
+## Expose the necessary ports (example for Spring Boot apps)
+#EXPOSE 8081 8082 8083
 
 # Run the entrypoint script by default
-ENTRYPOINT ["/entrypoint.sh"]
+
 
 # Expose the ports for each app
 #EXPOSE 8081 8082 8083
