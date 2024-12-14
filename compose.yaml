@@ -1,9 +1,9 @@
 services:
-  backoffice:
+  app:
     build:
+      context: .
       dockerfile: Dockerfile
-      context: ./BackOfficeSystem
-    container_name: backoffice_app
+    container_name: app_container
     depends_on:
       - pgdb
       - pgadmin
@@ -13,40 +13,9 @@ services:
       - SPRING_DATASOURCE_PASSWORD=1234
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     ports:
-      - 8081:8080
-
-  onlinebanking:
-    build:
-      dockerfile: Dockerfile
-      context: ./OnlineBanking
-    container_name: onlinebanking_app
-    depends_on:
-      - pgdb
-      - pgadmin
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://pgdb:5432/hdfcbank1
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=1234
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-    ports:
-      - 8082:8080
-
-  transactionscheduling:
-    build:
-      dockerfile: Dockerfile
-      context: ./TransactionScheduling
-    container_name: transactionscheduling_app
-    depends_on:
-      - pgdb
-      - pgadmin
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://pgdb:5432/hdfcbank1
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=1234
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-    ports:
-      - 8083:8080
-
+      - 8080:8080
+      - 8081:8081
+      - 8082:8082
   pgdb:
     container_name: pgdb
     image: 'postgres:13.1-alpine'
