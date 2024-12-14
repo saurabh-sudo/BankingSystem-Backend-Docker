@@ -1,7 +1,7 @@
 services:
   app:
     build:
-#      context: .
+      context: .
       dockerfile: Dockerfile
     container_name: app_container
     depends_on:
@@ -27,7 +27,6 @@ services:
     volumes:
       - database_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-
   pgadmin:
     container_name: pgadmin
     image: 'dpage/pgadmin4'
@@ -36,7 +35,6 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=test@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=1234
-
 volumes:
   database_data:
     driver: local

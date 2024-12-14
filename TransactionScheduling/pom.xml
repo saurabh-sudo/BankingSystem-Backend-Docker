@@ -7,7 +7,6 @@
 		<artifactId>BankingSystem</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.banking</groupId>
 	<artifactId>TransactionScheduling</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>TransactionScheduling</name>

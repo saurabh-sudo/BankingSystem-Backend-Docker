@@ -45,6 +45,14 @@ db: postgres
 
 password: 1234
 
+docker-compose up --build
+1. BackOfficeSystem: http://localhost:8081
+
+2. OnlineBankingSystem: http://localhost:8082
+
+3. TransactionSchedulingSystem: http://localhost:8083
+
+4. PgAdmin: http://localhost:5050
 
 Working of Every Module:
 
