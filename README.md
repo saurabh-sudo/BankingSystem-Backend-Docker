@@ -76,5 +76,16 @@ Working of Every Module:
       
       write the transaction log to the database.
 ```
+
+Pgadmin
+
+hostname: host.docker.internal
+
+prt: 6543
+
+username : postgres
+
+password : 1234
+
  
  Thank You!
