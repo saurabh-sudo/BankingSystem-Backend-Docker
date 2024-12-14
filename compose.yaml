@@ -1,0 +1,73 @@
+services:
+  backoffice:
+    build:
+      dockerfile: Dockerfile
+      context: ./BackOfficeSystem
+    container_name: backoffice_app
+    depends_on:
+      - pgdb
+      - pgadmin
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://pgdb:5432/hdfcbank1
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1234
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - 8081:8080
+
+  onlinebanking:
+    build:
+      dockerfile: Dockerfile
+      context: ./OnlineBanking
+    container_name: onlinebanking_app
+    depends_on:
+      - pgdb
+      - pgadmin
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://pgdb:5432/hdfcbank1
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1234
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - 8082:8080
+
+  transactionscheduling:
+    build:
+      dockerfile: Dockerfile
+      context: ./TransactionScheduling
+    container_name: transactionscheduling_app
+    depends_on:
+      - pgdb
+      - pgadmin
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://pgdb:5432/hdfcbank1
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1234
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - 8083:8080
+
+  pgdb:
+    container_name: pgdb
+    image: 'postgres:13.1-alpine'
+    ports:
+      - 6543:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+    volumes:
+      - database_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  pgadmin:
+    container_name: pgadmin
+    image: 'dpage/pgadmin4'
+    ports:
+      - 5050:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=test@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=1234
+
+volumes:
+  database_data:
+    driver: local

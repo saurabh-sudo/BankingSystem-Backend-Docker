@@ -190,4 +190,17 @@
     <changeSet author="Saurabh (generated)" id="1589378976508-25">
         <addForeignKeyConstraint baseColumnNames="proofid" baseTableName="account" constraintName="fkq8v5p6k5hsg4o0r6nbak9yp1o" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="proofid" referencedTableName="proof"/>
     </changeSet>
+    <changeSet id="1589378976508-26" author="Saurabh">
+        <sqlFile path="classpath:/insert_data.sql" />
+    </changeSet>
+    <changeSet id="1589378976508-27" author="Saurabh" >
+        <insert tableName="role">
+            <column name="roleid" value="1"/>
+            <column name="rolename" value="CAPTURER"/>
+        </insert>
+        <insert tableName="role">
+            <column name="roleid" value="2"/>
+            <column name="rolename" value="AUTHORISER"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>

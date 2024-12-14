@@ -22,7 +22,7 @@
         <module>BankData</module>
         <module>BackOfficeSystem</module>
         <module>OnlineBanking</module>
-        <module>TransactionScheduling1</module>
+        <module>TransactionScheduling</module>
     </modules>
 <!--    <dependencies>-->
 <!--        <dependency>-->
