@@ -20,6 +20,32 @@ Functionalities:
 ⦁	Liquibase: Used for Managing database Entries.
 
 
+## Docker Image is available at the below location:
+
+https://hub.docker.com/repository/docker/saurabh05/banking-system-backend/general
+
+
+## If you want to see the data, then pgadmin support is already integrated into the images. Please follow the steps below to access the DB details on PgAdmin.
+
+PgAdmin is Accessible at http://localhost:5050 with the credentials:
+
+Email: test@gmail.com
+
+Password: 1234.
+
+To connect to pgDb use the below credentials after getting into PGAdmin:
+
+hostname: host.docker.internal
+
+port: 6543
+
+username: postgres
+
+db: postgres
+
+password: 1234
+
+
 Working of Every Module:
 
 ## Backoffice System:
@@ -77,15 +103,5 @@ Working of Every Module:
       write the transaction log to the database.
 ```
 
-Pgadmin
 
-hostname: host.docker.internal
-
-prt: 6543
-
-username : postgres
-
-password : 1234
-
- 
  Thank You!
